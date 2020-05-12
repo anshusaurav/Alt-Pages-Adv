@@ -10,7 +10,7 @@
     </div>
     <div>
         <h2 class='article-page-title'><%= article.title%></h2>
-        <h4 class='article-page-author'>By: <%= article.author.name%></h4>
+        <h4 class='article-page-author'>By: <%= article.author.name%> <span class='article-update-displ'>Last updated on: <%= article.updatedAt.toString().substr(0,15) %></span></h4>
         <% console.log(article.description) %>
         <% var arr = article.description.split(/\r?\n/)%>
         <% arr.forEach(elem => {  %>
@@ -34,7 +34,7 @@
         </div>
     </div>
     <% if(article.comments.length) { %>
-        <h2>Responses<%= `(${article.comments.length})` %></h2>
+        <h2 class='response-title'>Responses<%= `(${article.comments.length})` %></h2>
         <div class='comments-list-grid'>
         <% article.comments.forEach(elem => { %>
             <div class='single-comment'>
@@ -48,7 +48,7 @@
                     <% } %>
                 </div>
                 <div class="comment-author-div">
-                    <p><span class="by-span">By:</span>  <%= elem.author.name%></p>
+                    <p><span class="by-span">By:  <%= elem.author.name%></span> <span class="by-span-date">Last Updated On:  <%= elem.updatedAt.toString().substr(0,15)%></span></p>
                 </div>
             </div>
             <% })%>
