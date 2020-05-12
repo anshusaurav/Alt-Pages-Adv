@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var User = require("../models/user");
+var Article = require("../models/article");
 /* GET users listing. */
 router.get('/', function(req, res, next) {
 
@@ -79,8 +80,14 @@ router.get('/:id', function(req, res, next) {
   console.log('HERE');
   let id  = req.params.id;
   if(req.session.userId){
-    User.findById(id, (err, user) => {
-      return res.render('userProfile', {user: user, isUser: true});
+    User.findById(id, (err, visitor) => {
+      if(err)
+        return next(err);
+      User.findById(req.session.userId, (err, user) =>{
+        if(err)
+          return next(err);
+        return res.render('userProfile', {visitor: visitor,user: user, isUser: true});
+      });
     });
     
   }

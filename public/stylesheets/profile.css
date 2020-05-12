@@ -32,6 +32,7 @@ body {
   border-radius: 20px;
   box-shadow: 0px 0px 30px -9px var(--blue);
   text-align: center;
+  position: relative;
 }
 
 .profilepic {
@@ -73,6 +74,10 @@ body {
   justify-content: center;
   margin-top: 32px;
   border-radius: 20px;
+  position: absolute;
+  bottom: 0;
+    left: 0;
+    right: 0;
 }
 
 #Followers, #PhotoCount, #Following {
@@ -106,7 +111,7 @@ body {
 .contentcontainer {
   background-color: white;
   width: 600px;
-  height: 640px;
+  height: 620px;
   margin-top: -490px;
   margin-left: 110px;
   border-radius: 0px 20px 20px 0px;
@@ -148,8 +153,30 @@ h3 {
   border-radius: 6px;
   background-color: #e6e6e6;
 }
+.profile-edit-div{
+  position: relative;
+  left: 0;
+  bottom: 44px;
+  min-height: 50px;
+  width: 50px;
+  font-size: 44px;
+ 
+  
+}
+.profile-edit-div > a{
+  text-decoration: none;
+  color: #e6e6e6;
+}
+.profile-edit-div > a:hover{
+  /* text-decoration: none; */
+  color: #e6e6e6;
+  text-shadow: 1px 1px 2px rgb(22, 16, 17);
+  transition: all 0.2s ease-in;
+}
 #Photos_title {
   margin-top: 0;
+  /* padding-top: 0.5rem; */
+  /* display: flex; */
 }
 
 .story {
@@ -162,6 +189,7 @@ h3 {
   display: flex;
   align-items: center;
   justify-content: center;
+  
 }
 
 .story:hover {
