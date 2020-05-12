@@ -79,7 +79,7 @@ router.get('/:id', function(req, res, next) {
   console.log('HERE');
   let id  = req.params.id;
   if(req.session.userId){
-    User.create(req.body, (err, createdUser) => {
+    User.findById(id, (err, user) => {
       return res.render('userProfile', {user: user, isUser: true});
     });
     
