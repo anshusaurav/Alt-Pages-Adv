@@ -1,0 +1,72 @@
+<%- include('partials/header') -%>
+<% console.log(article) %>
+<div>
+    <div class='grid-col-end'>
+        <% if(article.author.id === user.id) { %>
+            <a href='/articles/<%= article.id %>/edit'><i title="Edit" class="far fa-edit"></i></a>
+            <a href='/articles/<%= article.id %>/delete'><i title="Delete" class="far fa-trash-alt"></i></a> 
+        <% }%>
+        <% console.log(article.author.id + "|" + user.id) %>
+    </div>
+    <div>
+        <h2 class='article-page-title'><%= article.title%></h2>
+        <h4 class='article-page-author'>By: <%= article.author.name%></h4>
+        <% console.log(article.description) %>
+        <% var arr = article.description.split(/\r?\n/)%>
+        <% arr.forEach(elem => {  %>
+            <p class='article-p'><%= elem %></p>
+        <%}); %>
+        <div class='like-grid'>
+            <a href='/articles/<%= article.id%>/like'><i class="fas fa-thumbs-up 
+                <% if(user.likedArticles.includes(article.id)) {%>
+                <%= 'liked-art' %>
+                <% } %>
+                "></i></a>
+            <span class='likes-count'><%= `LIKES: ${article.readersLiked.length}`%></span>
+            
+        </div>
+        <div class='tags-grid'>
+            <% article.tags.forEach(element => { %>
+                <div class="tag-elem-div">
+                    <a href="/tags/<%= element %>"class="tag-elem"> <%= element%></a>
+                </div>
+            <% }); %>
+        </div>
+    </div>
+    <% if(article.comments.length) { %>
+        <h2>Responses<%= `(${article.comments.length})` %></h2>
+        <div class='comments-list-grid'>
+        <% article.comments.forEach(elem => { %>
+            <div class='single-comment'>
+                <div class="comment-content-div">
+                
+                    <p class='comment-text'>&#8220;<%= `${elem.content.trim()}`%>&#8221;</p>
+                    <% console.log(user.id  +'||||||'+ elem.author) %>
+                    <% if(user.id == elem.author.id) { %>
+                    <a href="/articles/<%= article.id %>/comments/<%= elem.id %>/edit"><i class="far fa-edit art-comment-btn"></i></a>
+                    <a href="/articles/<%= article.id %>/comments/<%= elem.id %>/delete"><i class="far fa-trash-alt art-comment-btn"></i></a>
+                    <% } %>
+                </div>
+                <div class="comment-author-div">
+                    <p><span class="by-span">By:</span>  <%= elem.author.name%></p>
+                </div>
+            </div>
+            <% })%>
+        </div>
+        <% } else { %>
+         <h2>No response, be the first one to post.</h2>
+        <% } %> 
+    <form class="comment-form" action="/articles/<%= article.id %>/comments" method="POST">
+        <textarea class="comment-area" name="content" placeholder="Add response" required></textarea>
+        <div class="comment-flex-col-2">
+            
+            <input id="comment-btn" type="submit" value="Add Response">
+        </div>
+    </form>
+</div>
+<div class="grid-col-3">
+    <a href='/articles'><i title="Back" class="fas fa-backward"></i></a>
+    
+</div>
+<script src="/javascripts/script.js" defer></script>
+<%- include('partials/footer') -%>
