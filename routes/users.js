@@ -76,9 +76,10 @@ router.get('/logout', function(req, res, next) {
 });
  
 router.get('/:id', function(req, res, next) {
+  console.log('HERE');
   let id  = req.params.id;
   if(req.session.userId){
-
+    return res.render('userProfile');
   }
   else{
     req.flash('Error', 'Please login to continue')
