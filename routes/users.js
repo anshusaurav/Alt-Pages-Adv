@@ -79,7 +79,10 @@ router.get('/:id', function(req, res, next) {
   console.log('HERE');
   let id  = req.params.id;
   if(req.session.userId){
-    return res.render('userProfile');
+    User.create(req.body, (err, createdUser) => {
+      return res.render('userProfile', {user: user, isUser: true});
+    });
+    
   }
   else{
     req.flash('Error', 'Please login to continue')
