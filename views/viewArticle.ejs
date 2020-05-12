@@ -10,7 +10,7 @@
     </div>
     <div>
         <h2 class='article-page-title'><%= article.title%></h2>
-        <h4 class='article-page-author'>By: <%= article.author.name%> <span class='article-update-displ'>Last updated on: <%= article.updatedAt.toString().substr(0,15) %></span></h4>
+        <h4 class='article-page-author'>By: <a href = "/users/<%=article.author.id%>"class='article-auth-link'><%= article.author.name%></a> <span class='article-update-displ'>Last updated on: <%= article.updatedAt.toString().substr(0,15) %></span></h4>
         <% console.log(article.description) %>
         <% var arr = article.description.split(/\r?\n/)%>
         <% arr.forEach(elem => {  %>

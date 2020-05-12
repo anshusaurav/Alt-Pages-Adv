@@ -5,7 +5,7 @@
     <% articles.forEach(elem => { %>
         <div class='single'>
             <a href="/articles/<%= elem.id %>/"><h2 class='single-heading'><%= elem.title%></h2></a>
-            <h4 class='author-displ'>By: <%= elem.author.name%></h4>
+            <h4 class='author-displ'>By: <a href = "/users/<%=elem.author.id%>"class='article-auth-link'><%= elem.author.name%></a></h4>
             <div class='tags-grid'>
                 <% elem.tags.forEach(element => { %>
                     <div class="tag-elem-div">
