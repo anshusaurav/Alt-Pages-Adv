@@ -103,11 +103,11 @@ router.get('/:id', function(req, res, next) {
 router.get('/:id/follow', function(req, res, next){
   let id  = req.params.id;
   if(req.session.userId){
-    User.findByIdAndUpdate(id, {$addToSet:{follower:req.session.userId}},{new: true}, (err, visitor) =>{
+    User.findByIdAndUpdate(id, {$addToSet : {followers : req.session.userId} },{new: true}, (err, visitor) =>{
       if(err)
         return next(err);
       else {
-        User.findByIdAndUpdate(req.session.user, {$addToSet:{following:req.session.userId}},{new: true}, (err, user) =>{
+        User.findByIdAndUpdate(req.session.userId, { $addToSet : { following:req.session.userId } },{new: true}, (err, user) =>{
           if(err) 
             return next(err);
           return res.redirect(`/users/${id}`);
@@ -123,11 +123,11 @@ router.get('/:id/follow', function(req, res, next){
 router.get('/:id/unfollow', function(req, res, next){
   let id  = req.params.id;
   if(req.session.userId){
-    User.findByIdAndUpdate(id, {$pull:{follower:req.session.userId}},{new: true}, (err, visitor) =>{
+    User.findByIdAndUpdate(id, {$pull:{followers:req.session.userId}},{new: true}, (err, visitor) =>{
       if(err)
         return next(err);
       else {
-        User.findByIdAndUpdate(req.session.user, {$pull:{following:req.session.userId}},{new: true}, (err, user) =>{
+        User.findByIdAndUpdate(req.session.userId, {$pull:{following:req.session.userId}},{new: true}, (err, user) =>{
           if(err) 
             return next(err);
           return res.redirect(`/users/${id}`);

@@ -18,7 +18,7 @@
         <%= visitor.bio %>
       </h2>
       <% if(visitor.id !== user.id) { %>
-        <% if(user.following.includes(visitor.id)) { %>
+        <% if(visitor.followers.includes(user.id)) { %>
           <a href="/users/<%= visitor.id %>/unfollow" class='pfu profile-follow-user'>Following</a>
         <% } else {%>
           <a href="/users/<%= visitor.id %>/follow" class='pfu profile-unfollow-user'>Follow</a>
