@@ -13,22 +13,28 @@
     <div class="profile-container">
     <div class="profilecontent">
       <div class="profilepic"><img class="responsive-img" src="/images/cartman.png"/></div>
-      <h1 class='name-profile'>Anshu Saurabh</h1>
+      <h1 class='name-profile'><%= visitor.name %></h1>
       <h2 class='bio-profile'>
-        Thinker, Programmer, Gamer, Travel enthusiast.</h2>
-      <a class='pfu profile-follow-user'>Follow</a>
-      <a class='pfu profile-unfollow-user'>Following</a>
+        <%= visitor.bio %>
+      </h2>
+      <% if(visitor.id !== user.id) { %>
+        <% if(user.following.includes(visitor.id)) { %>
+          <a href="/users/<%= visitor.id %>/unfollow" class='pfu profile-follow-user'>Following</a>
+        <% } else {%>
+          <a href="/users/<%= visitor.id %>/follow" class='pfu profile-unfollow-user'>Follow</a>
+        <% } %>
+      <% } %>
       <div class="button-container">
         <a id=PhotoCount>
-          102
+          <%= visitor.articles.length %>
           <h4 class='profile-heading'>Articles</h4>
         </a>
         <a id=Followers>
-          15K
+          <%= visitor.followers.length %>
           <h4 class='profile-heading'>Followers</h4>
         </a>
         <a id=Following>
-          574
+          <%= visitor.following.length %>
           <h4 class='profile-heading'>Following</h4>
         </a>
       </div>
@@ -37,26 +43,22 @@
       
       <div id=Photos_title><h3>Articles</h3></div>
       <div class='photos'>
-        <div class='profile-article-elem'></div>
-        <div class='profile-article-elem'></div>
-        <div class='profile-article-elem'></div>
-        <div class='profile-article-elem'></div>
-        <div class='profile-article-elem'></div>
-        <div class='profile-article-elem'></div>
-        <div class='profile-article-elem'></div>
-        <div class='profile-article-elem'></div>
-        <div class='profile-article-elem'></div>  
-        <div class='profile-article-elem'></div>
-        <div class='profile-article-elem'></div>
-        <div class='profile-article-elem'></div> 
+        <% visitor.articles.forEach((elem) => { %>
+          <div class='profile-article-elem'>
+            <p><%=elem.title %></p>
+          </div>
+        <% });%>
+        
       </div>
       
     </div>
-    <div class='profile-edit-div'>
-      <a href=''>
-        <i class="fas fa-user-edit"></i>
-      </a>
-    </div>
+    <% if(user.id === visitor.id) { %>
+      <div class='profile-edit-div'>
+        <a href=''>
+          <i class="fas fa-user-edit"></i>
+        </a>
+      </div>
+    <% } %>
   </div>
   </body>
   </html>

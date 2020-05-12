@@ -80,21 +80,65 @@ router.get('/:id', function(req, res, next) {
   console.log('HERE');
   let id  = req.params.id;
   if(req.session.userId){
-    User.findById(id, (err, visitor) => {
-      if(err)
-        return next(err);
-      User.findById(req.session.userId, (err, user) =>{
-        if(err)
-          return next(err);
-        return res.render('userProfile', {visitor: visitor,user: user, isUser: true});
-      });
-    });
+    User.findById(id)
+        .populate('articles')
+        .exec((err, visitor) => {
+          if(err)
+            return next(err);
+          User.findById(req.session.userId, (err, user) =>{
+            if(err)
+              return next(err);
+            return res.render('userProfile', {visitor: visitor,user: user, isUser: true});
+          });
+        });
     
   }
   else{
     req.flash('Error', 'Please login to continue')
     res.locals.message = req.flash();
     return res.render('login')
+  }
+});
+
+router.get('/:id/follow', function(req, res, next){
+  let id  = req.params.id;
+  if(req.session.userId){
+    User.findByIdAndUpdate(id, {$addToSet:{follower:req.session.userId}},{new: true}, (err, visitor) =>{
+      if(err)
+        return next(err);
+      else {
+        User.findByIdAndUpdate(req.session.user, {$addToSet:{following:req.session.userId}},{new: true}, (err, user) =>{
+          if(err) 
+            return next(err);
+          return res.redirect(`/users/${id}`);
+            //return res.render('userProfile', {visitor: visitor,user: user, isUser: true});
+          
+        });
+      }
+    })
+  
+  }
+});
+
+router.get('/:id/unfollow', function(req, res, next){
+  let id  = req.params.id;
+  if(req.session.userId){
+    User.findByIdAndUpdate(id, {$pull:{follower:req.session.userId}},{new: true}, (err, visitor) =>{
+      if(err)
+        return next(err);
+      else {
+        User.findByIdAndUpdate(req.session.user, {$pull:{following:req.session.userId}},{new: true}, (err, user) =>{
+          if(err) 
+            return next(err);
+          return res.redirect(`/users/${id}`);
+          
+          
+            // return res.render('userProfile', {visitor: visitor,user: user, isUser: true});
+          
+        });
+      }
+    })
+  
   }
 });
 module.exports = router;
