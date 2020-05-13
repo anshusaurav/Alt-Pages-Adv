@@ -1,0 +1,48 @@
+<html lang = "en">
+<head>
+  <title>IShoutout :: Edit Profile</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=divice-width,initial-scale=1.0">
+</head>
+<body>
+    
+    <div id = "wrapper">
+      <div id = "content"><br>
+        <h1>Edit Business Profile</h1>
+        <div id = "RightColumn">
+          <form id ="PPicture" action="">
+            <fieldset>
+            <legend>Profile Picture</legend>
+            <div>  
+            <center><img src="http://www.dartmouth.edu/~envs/images/cafe.jpg" alt="" width="270px" height="270px"/>
+            </div>
+            <br>
+            <label for="myPic">Picture URL:</label>
+            <input type="url" name="myPic" id="myPic" size="35" value ="http://www.dartmouth.edu/~envs/images/cafe.jpg">
+            </center>
+            </fieldset>
+          </form>
+          
+          
+        </div>
+        <form id="profile" action = "">
+          <fieldset>
+          <legend>Profile Information</legend>
+          <br>
+          <label for="name">Name:</label>
+          <input type="text" name="name" id="myBName" required value ="Jack's Cafe">
+          <label for="email">*Owner's First Name:</label>
+          <input type="text" name="email" id="myOFName" required value ="Jack">
+          
+          <label for="myBio">Biography:</label>
+          <textarea name"myBio" id="myBio" rows="2" cols="32" placeholder= ""></textarea>
+          </fieldset>
+        </form>
+        <br>
+      </div>
+      <div id = "bottom">
+        <center><input type="submit" value="Save Changes"/></center>
+      </div>
+    </div>
+</body>
+</html>

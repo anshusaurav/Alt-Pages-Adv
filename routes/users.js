@@ -75,7 +75,8 @@ router.get('/logout', function(req, res, next) {
   //res.clearCookie('connect-sid');
   res.redirect('/');
 });
- 
+
+//View User Profile
 router.get('/:id', function(req, res, next) {
   console.log('HERE');
   let id  = req.params.id;
@@ -100,6 +101,8 @@ router.get('/:id', function(req, res, next) {
   }
 });
 
+
+//Follow User
 router.get('/:id/follow', function(req, res, next){
   let id  = req.params.id;
   if(req.session.userId){
@@ -120,6 +123,8 @@ router.get('/:id/follow', function(req, res, next){
   }
 });
 
+
+//Unfollow User
 router.get('/:id/unfollow', function(req, res, next){
   let id  = req.params.id;
   if(req.session.userId){
@@ -141,4 +146,6 @@ router.get('/:id/unfollow', function(req, res, next){
   
   }
 });
+
+//Edit User Profile
 module.exports = router;
