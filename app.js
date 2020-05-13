@@ -13,7 +13,7 @@ var articlesRouter = require('./routes/articles');
 var tagsRouter = require('./routes/tags');
 //connect to mongodb
 
-mongoose.connect('mongodb://localhost/alt-pages-db',
+mongoose.connect('mongodb://localhost/alt-pages-smartdb',
 {useNewUrlParser: true, useUnifiedTopology: true},
  (err)=>{
   console.log("connected", err? err:true);

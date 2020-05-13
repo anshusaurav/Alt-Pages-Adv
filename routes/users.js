@@ -150,6 +150,37 @@ router.get('/:id/unfollow', function(req, res, next){
 //Edit User Profile
 
 router.get('/:id/edit', function(req, res, next){
-  res.render('editProfile');
+  let id  = req.params.id;
+  if(req.session.userId && req.session.userId === id){
+    User.findById(req.session.userId, (err, user) => {
+      if(err)
+        return next(err);
+      return  res.render('editProfile',{user: user, isUser: true});
+    });
+  }
+  else {
+      req.flash('Error', 'Please login to continue')
+      res.locals.message = req.flash();
+      return res.render('login');  
+  }
+});
+router.post('/:id/edit', function(req, res, next){
+  let id  = req.params.id;
+  console.log(req.body);
+  // console.log('|' + req.body + '|');
+  if(req.session.userId && req.session.userId === id){
+        User.findByIdAndUpdate(id, req.body, 
+          {new:true, runValidators: true} , 
+            (err, user) =>{
+              if(err)
+                  return next(err);
+              return res.redirect(`/users/${id}`);
+        });
+  }
+  else {
+      req.flash('Error', 'Please login to continue')
+      res.locals.message = req.flash();
+      return res.render('login');  
+  }
 });
 module.exports = router;

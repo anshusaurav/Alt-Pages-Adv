@@ -8,7 +8,7 @@
 </head>
 <body>
     
-  <form>
+  <form action="/users/<%= user.id %>/edit" method="POST">
     <div class="edit-profile-wrapper">
       <h1>Edit Profile</h1>
       <div class="edit-profile-content">
@@ -16,11 +16,11 @@
             <fieldset>
             <legend>Profile Picture</legend>
             <div>  
-            <center><img src="/images/cartman.png" alt="" width="270px" height="270px"/>
+            <center><img src="<%= user.imageurl %>" alt=""/>
             </div>
             <br>
             <label for="myPic">Picture URL:</label>
-            <input type="url" name="myPic" id="myPic" size="35" value ="" onchange="return showMyImageViaURL(this)" onkeydown="return handleKeyDown(event)">
+              <input type="url" name="imageurl" id="myPic" size="35" value ="<%= user.imageurl %>" onkeyup="showMyImageViaURL(this)" onkeydown="return handleKeyDown(event)">
             <p class='or-p'>OR</p>
             <label for="myPic">Upload Picture</label>
             <input type="file" id="avatar" name="avatar" accept="image/png, image/jpeg" onchange="showMyImageViaUpload(this)"> 
@@ -32,12 +32,12 @@
           <legend>Profile Information</legend>
           <div class='edit-profile-internal'>
             <label for="name">Name:</label>
-            <input type="text" name="name" id="myBName" required value ="Jack's Cafe">
+            <input type="text" name="name" id="myBName" required value ="<%= user.name %>">
           </div>
           
           <div class='edit-profile-internal'>
-            <label for="myBio">Short-Biog:</label>
-            <textarea name"myBio" id="myBio" rows="2" cols="32" placeholder= ""></textarea>
+            <label for="bio">Short-Bio:</label>
+            <input type="text" name="bio" id="myBio" placeholder= "" value="<%= user.bio %>"/>
           </div>
           </fieldset>
         </div>
