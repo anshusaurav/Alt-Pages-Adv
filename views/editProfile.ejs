@@ -8,26 +8,23 @@
 </head>
 <body>
     
-    <div id = "wrapper">
-      <div id = "content"><br>
-        <h1>Edit Business Profile</h1>
-        <div id = "RightColumn">
-          <form id ="PPicture" action="">
+  <form>
+    <div class="edit-profile-wrapper">
+      <h1>Edit Profile</h1>
+      <div class = "edit-profile-content">
+        <div class = "edit-profile-left-Column">
             <fieldset>
             <legend>Profile Picture</legend>
             <div>  
-            <center><img src="http://www.dartmouth.edu/~envs/images/cafe.jpg" alt="" width="270px" height="270px"/>
+            <center><img src="/images/cartman.png" alt="" width="270px" height="270px"/>
             </div>
             <br>
             <label for="myPic">Picture URL:</label>
             <input type="url" name="myPic" id="myPic" size="35" value ="http://www.dartmouth.edu/~envs/images/cafe.jpg">
             </center>
             </fieldset>
-          </form>
-          
-          
         </div>
-        <form id="profile" action = "">
+        <div class = "edit-profile-right-Column">
           <fieldset>
           <legend>Profile Information</legend>
           <br>
@@ -39,12 +36,12 @@
           <label for="myBio">Biography:</label>
           <textarea name"myBio" id="myBio" rows="2" cols="32" placeholder= ""></textarea>
           </fieldset>
-        </form>
-        <br>
+        </div>
       </div>
-      <div id = "bottom">
+      <div class = "edit-profile-bottom">
         <center><input type="submit" value="Save Changes"/></center>
       </div>
     </div>
+  </form>
 </body>
 </html>

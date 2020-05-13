@@ -54,8 +54,7 @@
     </div>
     <% if(user.id === visitor.id) { %>
       <div class='profile-edit-div'>
-        <a href=''>
-          <i class="fas fa-user-edit"></i>
+        <a href='/users/<%= visitor.id %>/edit'>Edit Profile
         </a>
       </div>
     <% } %>

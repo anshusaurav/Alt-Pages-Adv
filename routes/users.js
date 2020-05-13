@@ -148,4 +148,8 @@ router.get('/:id/unfollow', function(req, res, next){
 });
 
 //Edit User Profile
+
+router.get('/:id/edit', function(req, res, next){
+  res.render('editProfile');
+});
 module.exports = router;
