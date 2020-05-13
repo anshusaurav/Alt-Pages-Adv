@@ -11,8 +11,8 @@
   <form>
     <div class="edit-profile-wrapper">
       <h1>Edit Profile</h1>
-      <div class = "edit-profile-content">
-        <div class = "edit-profile-left-Column">
+      <div class="edit-profile-content">
+        <div class="edit-profile-left-Column">
             <fieldset>
             <legend>Profile Picture</legend>
             <div>  
@@ -20,21 +20,25 @@
             </div>
             <br>
             <label for="myPic">Picture URL:</label>
-            <input type="url" name="myPic" id="myPic" size="35" value ="http://www.dartmouth.edu/~envs/images/cafe.jpg">
+            <input type="url" name="myPic" id="myPic" size="35" value ="" onchange="return showMyImageViaURL(this)" onkeydown="return handleKeyDown(event)">
+            <p class='or-p'>OR</p>
+            <label for="myPic">Upload Picture</label>
+            <input type="file" id="avatar" name="avatar" accept="image/png, image/jpeg" onchange="showMyImageViaUpload(this)"> 
             </center>
             </fieldset>
         </div>
-        <div class = "edit-profile-right-Column">
+        <div class="edit-profile-right-Column">
           <fieldset>
           <legend>Profile Information</legend>
-          <br>
-          <label for="name">Name:</label>
-          <input type="text" name="name" id="myBName" required value ="Jack's Cafe">
-          <label for="email">*Owner's First Name:</label>
-          <input type="text" name="email" id="myOFName" required value ="Jack">
+          <div class='edit-profile-internal'>
+            <label for="name">Name:</label>
+            <input type="text" name="name" id="myBName" required value ="Jack's Cafe">
+          </div>
           
-          <label for="myBio">Biography:</label>
-          <textarea name"myBio" id="myBio" rows="2" cols="32" placeholder= ""></textarea>
+          <div class='edit-profile-internal'>
+            <label for="myBio">Short-Biog:</label>
+            <textarea name"myBio" id="myBio" rows="2" cols="32" placeholder= ""></textarea>
+          </div>
           </fieldset>
         </div>
       </div>
@@ -43,5 +47,42 @@
       </div>
     </div>
   </form>
+  <script>
+    function showMyImageViaUpload(fileInput) {
+        var files = fileInput.files;
+        for (var i = 0; i < files.length; i++) {           
+            var file = files[i];
+            var imageType = /image.*/;     
+            if (!file.type.match(imageType)) {
+                continue;
+            }           
+            var img=document.querySelector("img");              
+            var reader = new FileReader();
+            reader.onload = (function(aImg) { 
+                return function(e) { 
+                    aImg.src = e.target.result; 
+                }; 
+            })(img);
+            reader.readAsDataURL(file);
+        }    
+    }
+
+    function handleKeyDown(event) {
+      if(event.keyCode == 13) {
+        event.preventDefault();
+        return false;
+      }
+    }
+    function showMyImageViaURL(fileInput) {
+
+      console.log(this.value);
+      var img=document.querySelector("img");    
+      let imgSrc = fileInput.value.trim();     
+      console.dir(img);   
+      img.src = imgSrc;
+      fileInput.value = imgSrc;
+      return false;
+    }
+  </script>
 </body>
 </html>

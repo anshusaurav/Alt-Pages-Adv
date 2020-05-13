@@ -22,6 +22,9 @@ var userSchema = new Schema({
     bio:{
         type: String
     },
+    image_url: {
+        type: String
+    },
     articles: [{
         type: Schema.Types.ObjectId,
         ref: "Article",
