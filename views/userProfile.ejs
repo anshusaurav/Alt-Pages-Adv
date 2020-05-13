@@ -25,7 +25,7 @@
         <% } %>
       <% } %>
       <div class="button-container">
-        <a id=PhotoCount>
+        <a id=ArticleCount>
           <%= visitor.articles.length %>
           <h4 class='profile-heading'>Articles</h4>
         </a>
@@ -41,12 +41,12 @@
     </div>
     <div class=contentcontainer>
       
-      <div id=Photos_title><h3>Articles</h3></div>
+      <div id=Articles_title><h3>Articles</h3></div>
       <div class='photos'>
         <% visitor.articles.forEach((elem) => { %>
-          <div class='profile-article-elem'>
+          <a href='' class='profile-article-elem'>
             <p><%=elem.title %></p>
-          </div>
+          </a>
         <% });%>
         
       </div>

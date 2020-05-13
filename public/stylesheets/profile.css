@@ -81,7 +81,7 @@ body {
     right: 0;
 }
 
-#Followers, #PhotoCount, #Following {
+#Followers, #ArticleCount, #Following {
   background-color: #e6e6e6;
   height: 100%;
   width: 33%;
@@ -92,7 +92,7 @@ body {
   color: #b3b3b3;
 }
 
-#Followers:hover, #PhotoCount:hover, #Following:hover {
+#Followers:hover, #ArticleCount:hover, #Following:hover {
   color: var(--green);
 }
 
@@ -101,7 +101,7 @@ body {
   border-right: solid 1px lightgrey;
 }
 
-#PhotoCount {
+#ArticleCount {
   border-radius: 0px 0px 0px 20px;
 }
 
@@ -163,9 +163,9 @@ h3 {
   position: relative;
   left: -85px;
   bottom: 120px;
-  min-height: 32px;
+  min-height: 24px;
   width: 170px;
-  font-size: 22px;
+  font-size: 14px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -196,7 +196,7 @@ h3 {
   text-shadow: 0.6px 0.5px 1px rgb(114, 107, 108);
   transition: all 0.2s ease-in;
 }
-#Photos_title {
+#Articles_title {
   margin-top: 0;
   /* padding-top: 0.5rem; */
   /* display: flex; */
@@ -222,7 +222,7 @@ h3 {
 
 .profile-article-elem {
   /* height: auto; */
-  
+  padding: 0.5rem;
   border-radius: 20px;
   background-color: aquamarine;
   

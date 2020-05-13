@@ -15,11 +15,11 @@
         <div class="edit-profile-left-Column">
             <fieldset>
             <legend>Profile Picture</legend>
-            <div>  
-            <center><img src="<%= user.imageurl %>" alt=""/>
+            <div class='profile-picture-edit'>  
+            <img class='edit-profile-res-img' src="<%= user.imageurl %>" alt=""/>
             </div>
             <br>
-            <label for="myPic">Picture URL:</label>
+            <label for="myPic">Picture URL</label>
               <input type="url" name="imageurl" id="myPic" size="35" value ="<%= user.imageurl %>" onkeyup="showMyImageViaURL(this)" onkeydown="return handleKeyDown(event)">
             <p class='or-p'>OR</p>
             <label for="myPic">Upload Picture</label>
@@ -31,13 +31,14 @@
           <fieldset>
           <legend>Profile Information</legend>
           <div class='edit-profile-internal'>
-            <label for="name">Name:</label>
+            <label for="name">Name</label>
             <input type="text" name="name" id="myBName" required value ="<%= user.name %>">
           </div>
           
           <div class='edit-profile-internal'>
-            <label for="bio">Short-Bio:</label>
-            <input type="text" name="bio" id="myBio" placeholder= "" value="<%= user.bio %>"/>
+            <label for="bio">Bio</label>
+            <textarea type="text" name="bio" id="myBio" placeholder= "" /><%= user.bio %></textarea>
+
           </div>
           </fieldset>
         </div>
