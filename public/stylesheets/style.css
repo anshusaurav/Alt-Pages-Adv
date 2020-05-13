@@ -85,8 +85,8 @@ a{
   border-radius: 10px;
   background: #ebf5fc;
   text-align: center;
-  box-shadow: -5px -5px 15px rgba(255, 255, 255, 0.8),
-    5px 5px 10px rgba(0, 0, 0, 0.1);
+  /* box-shadow: -5px -5px 15px rgba(255, 255, 255, 0.8),
+    5px 5px 10px rgba(0, 0, 0, 0.1); */
 }
 .form h2 {
   color: #32a3b1;
@@ -184,14 +184,12 @@ a{
   padding: 6px 16px; 
   margin:0 0.5rem; 
   margin-bottom: 1rem;
-  /* border: 1px solid #181818; */
   background-color: beige;
   color: #717171;
   
 }
 .tag-elem-div:hover{
-  /* color: #202020; */
-  background-color: rgba(184, 184, 184, 0.4);
+  background-color: #639fab;
   cursor: pointer;
 }
 .tag-elem{
@@ -227,4 +225,7 @@ a{
   text-align: center;
   letter-spacing: 1px;
   line-height: 6rem;
+}
+.home-page-hero-no-tag{
+  font-size: 24px;
 }

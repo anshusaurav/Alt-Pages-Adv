@@ -7,6 +7,8 @@ var mongoose = require('mongoose');
 var flash = require("connect-flash")
 var session = require("express-session");
 var MongoStore = require('connect-mongo')(session);
+var multer  = require('multer')
+var upload = multer({ dest: 'uploads/' })
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var articlesRouter = require('./routes/articles');
@@ -55,9 +57,9 @@ app.use((req, res, next) =>{
   next();
 });
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
 app.use('/articles', articlesRouter);
 app.use('/tags', tagsRouter);
+app.use('/users', usersRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

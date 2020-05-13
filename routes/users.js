@@ -2,6 +2,8 @@ var express = require('express');
 var router = express.Router();
 var User = require("../models/user");
 var Article = require("../models/article");
+var multer  = require('multer')
+var upload = multer({ dest: './public/data/uploads/' })
 /* GET users listing. */
 router.get('/', function(req, res, next) {
 
@@ -78,7 +80,7 @@ router.get('/logout', function(req, res, next) {
 
 //View User Profile
 router.get('/:id', function(req, res, next) {
-  console.log('HERE');
+  // console.log('HERE');
   let id  = req.params.id;
   if(req.session.userId){
     User.findById(id)
@@ -121,6 +123,11 @@ router.get('/:id/follow', function(req, res, next){
     })
   
   }
+  else {
+    req.flash('Error', 'Please login to continue')
+    res.locals.message = req.flash();
+    return res.render('login');  
+}
 });
 
 
@@ -145,6 +152,11 @@ router.get('/:id/unfollow', function(req, res, next){
     })
   
   }
+  else {
+    req.flash('Error', 'Please login to continue')
+    res.locals.message = req.flash();
+    return res.render('login');  
+}
 });
 
 //Edit User Profile
@@ -164,9 +176,16 @@ router.get('/:id/edit', function(req, res, next){
       return res.render('login');  
   }
 });
-router.post('/:id/edit', function(req, res, next){
+router.post('/:id/edit',upload.single('avatar'),function(req, res, next){
   let id  = req.params.id;
-  console.log(req.body);
+  //console.log(req.body);
+  //console.log(req.file);
+  console.log('here');
+  if(req.file){
+    console.log('here');
+    req.body.avatar = req.file.filename;
+    console.log(req.body.avatar);
+  }
   // console.log('|' + req.body + '|');
   if(req.session.userId && req.session.userId === id){
         User.findByIdAndUpdate(id, req.body, 

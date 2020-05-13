@@ -7,12 +7,25 @@
     <title>Alt-Pages</title>
     <link rel="stylesheet" href="/stylesheets/profile.css"/>
     <script src="https://kit.fontawesome.com/f4ce9ea80b.js" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css?family=Muli:300,400,500,600,700,800,900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Arvo:ital,wght@1,700&display=swap" rel="stylesheet">
     
   </head>
   <body>
+    <header>
+      <a class='icon-logo' href='/'><p class='header-links' id='logo-p'>Alt-Pages</p></a>
+      <% if(isUser){ %>
+        <a href="/users/logout"><div class="button header-links"> Sign out </div></a>
+        <a href="/articles"><div class="button header-links">HOME</div></a>
+      <% } else { %>
+        <a href="/users/register"><div class="button header-links">Sign Up</div></a>
+        <a href="/users/login"><div class="button header-links">Sign In</div></a>
+      <% } %>
+    </header>
+    
     <div class="profile-container">
     <div class="profilecontent">
-      <div class="profilepic"><img class="responsive-img" src="<%= visitor.imageurl %>"/></div>
+      <div class="profilepic"><img class="responsive-img" src="/data/uploads/<%= visitor.avatar %>"/></div>
       <h1 class='name-profile'><%= visitor.name %></h1>
       <h2 class='bio-profile'>
         <%= visitor.bio %>
@@ -59,5 +72,8 @@
       </div>
     <% } %>
   </div>
+  <footer>
+    <p class='footer-text'>&copy Anshu Saurabh</p>
+  </footer>
   </body>
   </html>

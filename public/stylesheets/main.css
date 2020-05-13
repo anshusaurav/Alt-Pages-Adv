@@ -48,7 +48,7 @@ a {
 }
 .single:hover{
   border: 2px ridge rgb(133, 125, 125);
-  background: #222626;
+  background:#639fab;
   transition: all 0.25s ease-in;
 }
 .single-heading{
@@ -378,7 +378,7 @@ h4{
 .article-home-elem:hover{
   min-height: 240px;
   color: white;
-  background-color: rgb(133, 133, 133);
+  background-color: var(--green);;
   border: 1px solid rgb(134, 195, 255);
   transition: all 0.25s ease-in-out;
 }
@@ -411,6 +411,6 @@ h4{
 }
 
 .article-auth-link:hover{
-  color: var(--periwinkle);
+  color: var(--green);
   transition: 0.2s all ease-in;
 }

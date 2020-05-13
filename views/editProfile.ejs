@@ -8,7 +8,7 @@
 </head>
 <body>
     
-  <form action="/users/<%= user.id %>/edit" method="POST">
+  <form action="/users/<%= user.id %>/edit" enctype="multipart/form-data" method="POST">
     <div class="edit-profile-wrapper">
       <h1>Edit Profile</h1>
       <div class="edit-profile-content">
@@ -16,12 +16,10 @@
             <fieldset>
             <legend>Profile Picture</legend>
             <div class='profile-picture-edit'>  
-            <img class='edit-profile-res-img' src="<%= user.imageurl %>" alt=""/>
+            <img class='edit-profile-res-img' src="/data/uploads/<%= user.avatar %>" alt=""/>
             </div>
             <br>
-            <label for="myPic">Picture URL</label>
-              <input type="url" name="imageurl" id="myPic" size="35" value ="<%= user.imageurl %>" onkeyup="showMyImageViaURL(this)" onkeydown="return handleKeyDown(event)">
-            <p class='or-p'>OR</p>
+            
             <label for="myPic">Upload Picture</label>
             <input type="file" id="avatar" name="avatar" accept="image/png, image/jpeg" onchange="showMyImageViaUpload(this)"> 
             </center>
