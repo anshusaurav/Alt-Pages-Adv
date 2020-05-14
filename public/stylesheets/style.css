@@ -85,8 +85,7 @@ a{
   border-radius: 10px;
   background: #ebf5fc;
   text-align: center;
-  /* box-shadow: -5px -5px 15px rgba(255, 255, 255, 0.8),
-    5px 5px 10px rgba(0, 0, 0, 0.1); */
+  box-shadow: -5px -5px 10px #717171, 5px 5px 5px rgba(0, 0, 0, 0.1);
 }
 .form h2 {
   color: #32a3b1;

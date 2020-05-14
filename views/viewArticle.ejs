@@ -8,12 +8,26 @@
         <% }%>
         <% console.log(article.author.id + "|" + user.id) %>
     </div>
+
     <div>
         <div class='article-page-title-container'>
             <h2 class='article-page-title'><%= article.title%></h2>
             <div class='article-page-title-author-div'>
                 <div class="profilepic"><img class="responsive-img" src="/data/uploads/<%= article.author.avatar %>"/></div>
-                <h4 class='article-page-author'><a href = "/users/<%=article.author.id%>"class='article-auth-link'><%= article.author.name%></a> <span class='article-update-displ'>Last updated on: <%= article.updatedAt.toString().substr(0,15) %></span></h4>
+                <div class='article-page-grid-user-follow article-page-author'>
+                    <a href = "/users/<%=article.author.id%>"class='article-auth-grid-elem article-auth-link'><%= article.author.name%></a> 
+                    <span class='article-update-displ-grid-elem article-update-displ'><%= article.updatedAt.toString().substr(4,11) %></span>
+                    <div class='article-author-fol-div com-view-art-follow'>
+                        <% if(article.author.id !== user.id) { %>
+                            <% if(article.author.followers.includes(user.id)) { %>
+                              <a href="/users/<%= article.author.id %>/unfollow" class='pfu profile-follow-user'>Following</a>
+                            <% } else {%>
+                              <a href="/users/<%= article.author.id %>/follow" class='pfu profile-unfollow-user'>Follow</a>
+                            <% } %>
+                          <% } %>
+                        
+                    </div>
+                </div>
             </div>
         </div>
         <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-show-count="false"></a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
@@ -50,27 +64,32 @@
                     <p class='comment-text'>&#8220;<%= `${elem.content.trim()}`%>&#8221;</p>
                     <% console.log(user.id  +'||||||'+ elem.author) %>
                     <% if(user.id == elem.author.id) { %>
-                    <a href="/articles/<%= article.id %>/comments/<%= elem.id %>/edit"><i class="far fa-edit art-comment-btn"></i></a>
-                    <a href="/articles/<%= article.id %>/comments/<%= elem.id %>/delete"><i class="far fa-trash-alt art-comment-btn"></i></a>
+                    <a href="/articles/<%= article.id %>/comments/<%= elem.id %>/edit">
+                        <i class="far fa-edit art-comment-btn">
+                        </i>
+                    </a>
+                    <a href="/articles/<%= article.id %>/comments/<%= elem.id %>/delete">
+                        <i class="far fa-trash-alt art-comment-btn">
+
+                        </i>
+                    </a>
                     <% } %>
                 </div>
                 <div class="comment-author-div">
                     <div class="profilepic"><img class="responsive-img" src="/data/uploads/<%= elem.author.avatar %>"/></div>
-                    <div class='com-author-view'>
-                        <div>
-                            <a href="/users/<%= elem.author.id %>/" class="by-span"><%= elem.author.name%></span> 
-                            <span class="by-span-date"><%= elem.updatedAt.toString().substr(4,11)%></span>
-                        </div>
-                        <div class='com-view-art-follow'>
-                            <% if(elem.author.id !== user.id) { %>
-                                <% if(elem.author.followers.includes(user.id)) { %>
-                                  <a href="/users/<%= elem.author.id %>/unfollow" class='pfu profile-follow-user'>Following</a>
-                                <% } else {%>
-                                  <a href="/users/<%= elem.author.id %>/follow" class='pfu profile-unfollow-user'>Follow</a>
+                    <div class='article-page-grid-user-follow com-author-view'>
+                        
+                            <a href="/users/<%= elem.author.id %>/" class="article-auth-grid-elem by-span"><%= elem.author.name%></a> 
+                            <span class="by-span-date article-update-displ-grid-elem"><%= elem.updatedAt.toString().substr(4,11)%></span>
+                            <div class='com-view-art-follow'>
+                                <% if(elem.author.id !== user.id) { %>
+                                    <% if(elem.author.followers.includes(user.id)) { %>
+                                    <a href="/users/<%= elem.author.id %>/unfollow" class='pfu profile-follow-user'>Following</a>
+                                    <% } else {%>
+                                    <a href="/users/<%= elem.author.id %>/follow" class='pfu profile-unfollow-user'>Follow</a>
+                                    <% } %>
                                 <% } %>
-                              <% } %>
-                            
-                        </div>
+                            </div>
                     </div>
                 </div>
             </div>
