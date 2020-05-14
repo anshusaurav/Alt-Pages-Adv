@@ -196,7 +196,7 @@ router.get('/:id', function(req, res, next) {
                 converter = new showdown.Converter(),
                 text      = article.description,
                 html      = converter.makeHtml(text);
-                
+                converter.setFlavor('github');
                 return res.render("viewArticle", {article:article, user:user, isUser: true, text: html});
             }) 
         });
