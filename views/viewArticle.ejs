@@ -30,13 +30,10 @@
                 </div>
             </div>
         </div>
-        <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-show-count="false"></a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
         
-  <% console.log(article.description) %>
-        <% var arr = article.description.split(/\r?\n/)%>
-        <% arr.forEach(elem => {  %>
-            <p class='article-p'><%= elem %></p>
-        <%}); %>
+        <div class='showdown-area'>
+            <%- text %>
+        </div>
         <div class='like-grid'>
             <a href='/articles/<%= article.id%>/like'><i class="fas fa-thumbs-up 
                 <% if(user.likedArticles.includes(article.id)) {%>
@@ -111,4 +108,23 @@
     
 </div>
 <script src="/javascripts/script.js" defer></script>
+<script>
+
+    let output = document.querySelector('.showdown-area');
+    let converter = new showdown.Converter({
+    tables: true,
+    simpleLineBreaks: true }),
+
+    text = article.description,
+    htmlMD = converter.makeHtml(text);
+    html = filterXSS(htmlMD); // xss sanitize-https://github.com/leizongmin/js-xss
+
+    converter.setFlavor('github');
+
+    if (text) {
+        output.innerHTML = html;
+    } else {
+        output.innerHTML = `<h3>${initText}</h3>`;
+    }
+</script>
 <%- include('partials/footer') -%>

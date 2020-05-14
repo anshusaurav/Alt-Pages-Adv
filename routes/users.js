@@ -24,11 +24,11 @@ router.get('/register', function(req, res, next){
 });
 
 router.post('/register', function(req, res, next){
-  console.log(req.body);
+  // console.log(req.body);
   User.create(req.body, (err, createdUser) => {
     if(err)
       return next(err);
-    console.log(createdUser, 'after save');
+    // console.log(createdUser, 'after save');
     req.flash('Success', 'Registeration successful')
     res.locals.message = req.flash();
     return res.render('login');
@@ -53,12 +53,12 @@ router.post('/login', async function(req, res, next){
   else{
     const match = await user.verifyPassword(password);
     if(match) {
-      console.log('Login Successful')
+      // console.log('Login Successful')
       req.session.userId = user.id;
       return res.redirect('/articles');
     }
     else{
-      console.log('Error', 'Invalid password. Please try again');
+      // console.log('Error', 'Invalid password. Please try again');
       req.flash('Error', 'Invalid password. Please try again')
       res.locals.message = req.flash();
       return res.render('login');
@@ -203,7 +203,7 @@ router.post('/:id/edit',upload.single('avatar'),function(req, res, next){
   if(req.file){
     console.log('here');
     req.body.avatar = req.file.filename;
-    console.log(req.body.avatar);
+    // console.log(req.body.avatar);
   }
   // console.log('|' + req.body + '|');
   if(req.session.userId && req.session.userId === id){

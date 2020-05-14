@@ -70,7 +70,7 @@ router.post('/', function(req, res, next) {
     req.body.tags = req.body.tags.split(', ');
     req.body.author = req.session.userId;
     let tagArr = req.body.tags;
-    console.log(req.body);
+    // console.log(req.body);
     Article.create(req.body, (err, data) => {
         if(err) return next(err);
         tagArr.forEach(tagname =>{
@@ -192,7 +192,12 @@ router.get('/:id', function(req, res, next) {
             }})
             .populate('author')
             .exec((err, article) =>{   //can add filter, projections and skip
-                return res.render("viewArticle", {article:article, user:user, isUser: true});
+                var showdown  = require('showdown'),
+                converter = new showdown.Converter(),
+                text      = article.description,
+                html      = converter.makeHtml(text);
+                
+                return res.render("viewArticle", {article:article, user:user, isUser: true, text: html});
             }) 
         });
     }
@@ -234,7 +239,7 @@ router.post('/:articleId/comments', (req, res, next) => {
         res.locals.message = req.flash();
         return res.render('login');  
     }
-    console.log(req.body);
+    // console.log(req.body);
 });
 
 
@@ -305,7 +310,7 @@ router.post('/:articleId/comments/:commentId/edit', (req, res, next) =>{
     let articleId = req.params.articleId;
     let commentId = req.params.commentId;
     console.log('Here updating comment');
-    console.log(commentId, articleId);
+    // console.log(commentId, articleId);
     req.body.articleId = articleId;
     if(req.session.userId){
         User.findById(req.session.userId, (err, user) => {
@@ -478,8 +483,8 @@ router.get('/:id/like', function(req, res, next) {
                         Article.findByIdAndUpdate(id, {$addToSet : { readersLiked:req.session.userId } },{ new: true }, (err, updatedArticle) =>{
                             if(err)
                                 return next(err);
-                            console.log(updatedUser);
-                            console.log(updatedArticle);
+                            // console.log(updatedUser);
+                            // console.log(updatedArticle);
                             res.redirect(`/articles/${id}`);
                     });
                 })
@@ -492,8 +497,8 @@ router.get('/:id/like', function(req, res, next) {
                         Article.findByIdAndUpdate(id, {$pull : { readersLiked:req.session.userId } },{ new: true }, (err, updatedArticle) =>{
                             if(err)
                                 return next(err);
-                            console.log(updatedUser);
-                            console.log(updatedArticle);
+                            // console.log(updatedUser);
+                            // console.log(updatedArticle);
                             res.redirect(`/articles/${id}`);
                     });
                 })    
