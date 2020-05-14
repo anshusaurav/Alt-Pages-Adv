@@ -10,8 +10,10 @@
     </div>
     <div>
         <h2 class='article-page-title'><%= article.title%></h2>
-        <h4 class='article-page-author'>By: <a href = "/users/<%=article.author.id%>"class='article-auth-link'><%= article.author.name%></a> <span class='article-update-displ'>Last updated on: <%= article.updatedAt.toString().substr(0,15) %></span></h4>
-        <% console.log(article.description) %>
+        <h4 class='article-page-author'><a href = "/users/<%=article.author.id%>"class='article-auth-link'><%= article.author.name%></a> <span class='article-update-displ'>Last updated on: <%= article.updatedAt.toString().substr(0,15) %></span></h4>
+        <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-show-count="false"></a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+        
+  <% console.log(article.description) %>
         <% var arr = article.description.split(/\r?\n/)%>
         <% arr.forEach(elem => {  %>
             <p class='article-p'><%= elem %></p>
@@ -48,7 +50,16 @@
                     <% } %>
                 </div>
                 <div class="comment-author-div">
-                    <p><span class="by-span">By:  <%= elem.author.name%></span> <span class="by-span-date">Last Updated On:  <%= elem.updatedAt.toString().substr(0,15)%></span></p>
+                    <div class="profilepic"><img class="responsive-img" src="/data/uploads/<%= elem.author.avatar %>"/></div>
+                    <div class='com-author-view'>
+                        <div>
+                            <span class="by-span"><%= elem.author.name%></span> 
+                            <span class="by-span-date"><%= elem.updatedAt.toString().substr(4,11)%></span>
+                        </div>
+                        <div>
+                            <a>Follow</a>
+                        </div>
+                    </div>
                 </div>
             </div>
             <% })%>

@@ -57,7 +57,7 @@
       <div id=Articles_title><h3>Articles</h3></div>
       <div class='photos'>
         <% visitor.articles.forEach((elem) => { %>
-          <a href='' class='profile-article-elem'>
+          <a href='/articles/<%=elem.id%>' class='profile-article-elem'>
             <p><%=elem.title %></p>
           </a>
         <% });%>

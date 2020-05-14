@@ -6,7 +6,12 @@
   --green: #639fab;
   --periwinkle: #bbcde5;
 }
-
+a{
+  text-decoration: none;
+}
+a> p{
+  text-decoration: none;
+}
 body {
   background-color: var(--periwinkle);
   height: 100vh;
@@ -158,7 +163,18 @@ h3 {
 .pfu{
   padding: 4px 8px;
   border-radius: 6px;
-  background-color: #e6e6e6;
+  /* background-color: #e6e6e6; */
+}
+.profile-follow-user{
+  color: rgb(10, 56, 85);
+  transition: all 0.2s ease-in-out;
+  background-color: #b3b3b3;
+  border: 0.5px solid rgb(13, 89, 136);
+}
+.profile-unfollow-user{
+  background-color: #1DA1F2;
+  color: white;
+  transition: all 0.2s ease-in-out;
 }
 .profile-edit-div{
   position: relative;
@@ -226,12 +242,14 @@ h3 {
   padding: 0.5rem;
   border-radius: 20px;
   background-color: aquamarine;
+  color: var(--black) ; 
   
 }
 
 .profile-article-elem:hover {
   border-radius: 0px;
   transition: all 0.2s ease-in-out;
+  text-decoration: underline;
 }
 header {
   min-width: 100%;
