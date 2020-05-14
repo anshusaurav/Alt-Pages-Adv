@@ -107,6 +107,7 @@ router.get('/:id', function(req, res, next) {
 //Follow User
 router.get('/:id/follow', function(req, res, next){
   let id  = req.params.id;
+  let ref = req.get('Referrer');
   if(req.session.userId){
     User.findByIdAndUpdate(id, {$addToSet : {followers : req.session.userId} },{new: true}, (err, visitor) =>{
       if(err)
@@ -115,7 +116,16 @@ router.get('/:id/follow', function(req, res, next){
         User.findByIdAndUpdate(req.session.userId, { $addToSet : { following:req.session.userId } },{new: true}, (err, user) =>{
           if(err) 
             return next(err);
-          return res.redirect(`/users/${id}`);
+          if(ref.includes('users/'))
+            return res.redirect(`/users/${id}`);
+          else if(ref.includes('articles')) {
+            let ind = ref.indexOf('/articles/');
+
+            return res.redirect(ref.substr(ind));
+          }
+          else{
+            return res.redirect(`/users/${id}`);
+          }
             //return res.render('userProfile', {visitor: visitor,user: user, isUser: true});
           
         });
@@ -134,6 +144,7 @@ router.get('/:id/follow', function(req, res, next){
 //Unfollow User
 router.get('/:id/unfollow', function(req, res, next){
   let id  = req.params.id;
+  let ref = req.get('Referrer');
   if(req.session.userId){
     User.findByIdAndUpdate(id, {$pull:{followers:req.session.userId}},{new: true}, (err, visitor) =>{
       if(err)
@@ -142,7 +153,15 @@ router.get('/:id/unfollow', function(req, res, next){
         User.findByIdAndUpdate(req.session.userId, {$pull:{following:req.session.userId}},{new: true}, (err, user) =>{
           if(err) 
             return next(err);
-          return res.redirect(`/users/${id}`);
+            if(ref.includes('users/'))
+            return res.redirect(`/users/${id}`);
+          else if(ref.includes('articles')) {
+            let ind = ref.indexOf('/articles/');
+            return res.redirect(ref.substr(ind));
+          }
+          else{
+            return res.redirect(`/users/${id}`);
+          }
           
           
             // return res.render('userProfile', {visitor: visitor,user: user, isUser: true});
@@ -180,7 +199,7 @@ router.post('/:id/edit',upload.single('avatar'),function(req, res, next){
   let id  = req.params.id;
   //console.log(req.body);
   //console.log(req.file);
-  console.log('here');
+  
   if(req.file){
     console.log('here');
     req.body.avatar = req.file.filename;

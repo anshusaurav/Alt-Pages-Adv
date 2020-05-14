@@ -178,13 +178,26 @@ textarea{
 }
 .article-p{
   font-size: 16px;
+  /* font-family: 'Playfair Display', serif; */
+}
+.article-page-title-container{
+  width: 70%;
+  margin: 0 auto;
 }
 .article-page-title, .article-page-author {
-  text-align: center;
+  /* text-align: center; */
 }
 .article-page-title{
   margin-bottom: 1rem;
-  font-size: 24px;
+  font-size: 36px;
+  letter-spacing: 2px;
+  font-family: 'Playfair Display', serif;
+  
+}
+.article-page-title-author-div{
+  display: grid;
+  grid-template-columns: 1fr 5fr;
+  margin: 0 auto;
 }
 .article-page-author {
   margin-bottom: 0.5rem;
@@ -291,6 +304,7 @@ h4{
   font-size: 16px;
   font-weight: 600;
   color: #333333;
+  text-decoration: none;
 }
 .by-span-date{
   font-size: 10px;
@@ -301,7 +315,7 @@ h4{
   font-size: 16px;
   font-weight: 500;
   display: grid;
-  grid-template-columns: 1fr 4fr;
+  grid-template-columns: 1fr 5fr;
   justify-content: center;
   align-content: center;
 }
@@ -309,8 +323,8 @@ h4{
   /* background-image: url(https://cdn.pixabay.com/photo/2016/03/09/09/31/woman-1245840_1280.jpg); */
   /* background-size: cover; */
   /* background-position: center; */
-  max-width: 64px;
-  max-height: 64px;
+  max-width: 60px;
+  max-height: 60px;
   border-radius: 20px 20px 0px 0px;
 }
 .responsive-img{
@@ -319,8 +333,30 @@ h4{
     border-radius: 50%;
 }
 .com-author-view{
-  padding-top: 1rem;
+  /* padding-top: 1rem; */
   
+}
+.com-view-art-follow{
+  /* text-align: center; */
+}
+.pfu{
+  display: inline-block;
+  padding: 2px 4px;
+  border-radius: 6px;
+  /* background-color: #e6e6e6; */
+  margin: 4px 0;
+  font-size: 12px;
+}
+.profile-follow-user{
+  color: rgb(10, 56, 85);
+  transition: all 0.2s ease-in-out;
+  background-color: #b3b3b3;
+  border: 0.5px solid rgb(13, 89, 136);
+}
+.profile-unfollow-user{
+  background-color: #1DA1F2;
+  color: white;
+  transition: all 0.2s ease-in-out;
 }
 .comment-form{
   min-width: 50%;

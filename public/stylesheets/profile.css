@@ -2,6 +2,7 @@
 
 :root {
   --black: #222222;
+  --light-black: #555555;
   --blue: #1c5d99;
   --green: #639fab;
   --periwinkle: #bbcde5;
@@ -242,10 +243,24 @@ h3 {
   padding: 0.5rem;
   border-radius: 20px;
   background-color: aquamarine;
-  color: var(--black) ; 
+  color: var(--black) ;
+  
   
 }
-
+.profile-article-elem-tit {
+  font-weight: 600; 
+  font-size: 14px;
+  letter-spacing: 0.5px;
+  color: var(--black);
+  font-family: Lato;
+}
+.profile-article-elem-dt{
+  font-weight: 500; 
+  font-size: 12px;
+  letter-spacing: 0.25px;
+  color: var(--light-black);
+  font-family: Lato;
+}
 .profile-article-elem:hover {
   border-radius: 0px;
   transition: all 0.2s ease-in-out;

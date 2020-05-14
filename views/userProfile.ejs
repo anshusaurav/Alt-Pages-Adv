@@ -58,7 +58,8 @@
       <div class='photos'>
         <% visitor.articles.forEach((elem) => { %>
           <a href='/articles/<%=elem.id%>' class='profile-article-elem'>
-            <p><%=elem.title %></p>
+            <p class='profile-article-elem-tit'><%=elem.title %></p>
+            <p class='profile-article-elem-dt'><%= elem.updatedAt.toString().substr(4, 7)%></p>
           </a>
         <% });%>
         
